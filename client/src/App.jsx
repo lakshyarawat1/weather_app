@@ -1,10 +1,15 @@
+import Dashboard from "./components/Dashboard"
+import RightComponent from "./components/RightComponent"
+import SideBar from "./components/SideBar"
 
 function App() {
 
   return (
     <>
-      <div className='text-3xl underline'>
-        Test123
+      <div className="">
+        <SideBar />
+        <Dashboard />
+        <RightComponent />
       </div>
     </>
   )
