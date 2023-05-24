@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <div className="">
+      <div className="flex">
         <SideBar />
         <Dashboard />
         <RightComponent />

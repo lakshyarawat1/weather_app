@@ -1,7 +1,7 @@
 const SideBar = () => {
   return (
     <>
-      <div className="w-1/4 bg-slate-100 absolute left-0 h-full">
+      <div className="w-1/4 bg-slate-100 h-[100vh] hidden md:flex md:flex-col">
         <div className="m-4 flex gap-10 items-center bg-white p-6 rounded-2xl shadow-md">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -32,11 +32,6 @@ const SideBar = () => {
         <div className="mx-5 mt-2 bg-white rounded-lg shadow-md hover:bg-slate-200">
           <div className="p-6 text-[#2f69fe] font-semibold text-lg">
             <a href="/settings">Settings</a>
-          </div>
-        </div>
-        <div className=" w-[90%] ml-4 mb-2 absolute bottom-0 bg-white rounded-lg shadow-md hover:bg-slate-200">
-          <div className="p-2 text-center text-[#2f69fe] font-semibold text-lg">
-            <a href="/login">Login</a>
           </div>
         </div>
       </div>
