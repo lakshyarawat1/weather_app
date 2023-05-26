@@ -3,6 +3,7 @@
 import { BsWind, BsCloudRain, BsSun } from "react-icons/bs";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { CiWavePulse1 } from 'react-icons/ci'
+import HomeChart from "../charts/homeChart";
 
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, "0");
@@ -148,6 +149,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        <HomeChart />
       </div>
     </>
   );
