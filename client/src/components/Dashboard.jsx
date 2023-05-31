@@ -2,8 +2,10 @@
 
 import { BsWind, BsCloudRain, BsSun } from "react-icons/bs";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-import { CiWavePulse1 } from 'react-icons/ci'
+import { CiWavePulse1 } from "react-icons/ci";
 import HomeChart from "../charts/homeChart";
+import { getWeatherData } from "../api/weatherAPI";
+import { useState, useEffect } from "react";
 
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, "0");
@@ -13,6 +15,17 @@ var yyyy = today.getFullYear();
 today = dd + "/" + mm + "/" + yyyy;
 
 const Dashboard = () => {
+  const [weatherData, setWeatherData] = useState();
+
+  useEffect(() => {
+    getWeatherData()
+      .then((response) => {
+        setWeatherData(response);
+        console.log(weatherData);
+      })
+      .catch((err) => console.log(err));
+  }, [weatherData]);
+
   return (
     <>
       <div className="bg-white w-1/2">
@@ -85,7 +98,7 @@ const Dashboard = () => {
                 <div className="text-slate-500 text-xs">Wind speed</div>
               </div>
               <div className="flex gap-6">
-                <div className="text-xl font-bold ml-10">12 km/h</div>
+                <div className="text-xl font-bold ml-10">{ weatherData.weatherData.current.gust_kph } km/h</div>
                 <div className="flex gap-2">
                   <div className="text-xl text-red-500 animate-bounce">
                     <AiFillCaretDown />
@@ -102,7 +115,7 @@ const Dashboard = () => {
                 <div className="text-slate-500 text-xs">Pressure</div>
               </div>
               <div className="flex gap-6">
-                <div className="text-xl font-bold ml-10">720 hpa</div>
+                <div className="text-xl font-bold ml-10">{ weatherData.weatherData.current.pressure_mb } hpa</div>
                 <div className="flex gap-2">
                   <div className="text-xl text-green-500 animate-bounce">
                     <AiFillCaretUp />
@@ -138,7 +151,9 @@ const Dashboard = () => {
                 <div className="text-slate-500 text-xs">UV Index</div>
               </div>
               <div className="flex gap-16">
-                <div className="text-xl font-bold ml-10">2,3</div>
+                <div className="text-xl font-bold ml-10">
+                  {weatherData.weatherData.current.uv}
+                </div>
                 <div className="flex gap-2">
                   <div className="text-xl text-red-500 animate-bounce">
                     <AiFillCaretDown />
