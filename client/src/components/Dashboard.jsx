@@ -4,8 +4,7 @@ import { BsWind, BsCloudRain, BsSun } from "react-icons/bs";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { CiWavePulse1 } from "react-icons/ci";
 import HomeChart from "../charts/homeChart";
-import { getWeatherData } from "../api/weatherAPI";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, "0");
@@ -14,18 +13,9 @@ var yyyy = today.getFullYear();
 
 today = dd + "/" + mm + "/" + yyyy;
 
-const Dashboard = () => {
-  const [weatherData, setWeatherData] = useState();
+const Dashboard = ( weatherData ) => {
 
-  useEffect(() => {
-    getWeatherData()
-      .then((response) => {
-        setWeatherData(response);
-        console.log(weatherData);
-      })
-      .catch((err) => console.log(err));
-  }, [weatherData]);
-
+  console.log(weatherData)
   return (
     <>
       <div className="bg-white w-1/2">
@@ -98,7 +88,7 @@ const Dashboard = () => {
                 <div className="text-slate-500 text-xs">Wind speed</div>
               </div>
               <div className="flex gap-6">
-                <div className="text-xl font-bold ml-10">{ weatherData.weatherData.current.gust_kph } km/h</div>
+                <div className="text-xl font-bold ml-10"> km/h</div>
                 <div className="flex gap-2">
                   <div className="text-xl text-red-500 animate-bounce">
                     <AiFillCaretDown />
@@ -115,7 +105,7 @@ const Dashboard = () => {
                 <div className="text-slate-500 text-xs">Pressure</div>
               </div>
               <div className="flex gap-6">
-                <div className="text-xl font-bold ml-10">{ weatherData.weatherData.current.pressure_mb } hpa</div>
+                <div className="text-xl font-bold ml-10"> hpa</div>
                 <div className="flex gap-2">
                   <div className="text-xl text-green-500 animate-bounce">
                     <AiFillCaretUp />
@@ -151,9 +141,7 @@ const Dashboard = () => {
                 <div className="text-slate-500 text-xs">UV Index</div>
               </div>
               <div className="flex gap-16">
-                <div className="text-xl font-bold ml-10">
-                  {weatherData.weatherData.current.uv}
-                </div>
+                <div className="text-xl font-bold ml-10"></div>
                 <div className="flex gap-2">
                   <div className="text-xl text-red-500 animate-bounce">
                     <AiFillCaretDown />

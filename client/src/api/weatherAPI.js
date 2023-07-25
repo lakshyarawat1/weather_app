@@ -3,7 +3,7 @@ import axios from "axios";
 const serverURL = "http://localhost:3000/weather";
 
 export const getWeatherData = async () => {
-  return new Promise((resolve, reject) => {
+  const response = await new Promise((resolve, reject) => {
     axios
       .get(serverURL)
       .then((response) => {
@@ -13,4 +13,6 @@ export const getWeatherData = async () => {
         reject(error);
       });
   });
+  console.log(response);
+  return response;
 };
